@@ -2,6 +2,8 @@
 #include <string>
 using namespace std;
 unsigned short personHeight;
+unsigned short personWeight;
+
 unsigned short ReadPersonAge()
 {
 unsigned short age;
@@ -27,39 +29,39 @@ void ReadPersonSalary(double *salary)
 {
 	cin >> *salary;
 }
-void ReadPersonData(string &name, unsigned short &age, string &salary)
+void ReadPersonData(string &name, unsigned short &age, double &salary)
 {
 	name = ReadPersonName();
 	age = ReadPersonAge();
-	double salary2;
-	ReadPersonSalary(&salary2);
-	salary = to_string(salary2);
+	ReadPersonSalary(&salary);
+	
  }
 
-void ReadPersonData(string &name, unsigned short &age, string &height, string &weight)
+void ReadPersonData(string &name, unsigned short &age, unsigned short &height, unsigned short &weight)
 {
 	name = ReadPersonName();
 	age = ReadPersonAge();
 	ReadPersonHeight();
-	height = to_string(personHeight);
-	unsigned short weight2;
-	ReadPersonWeight(weight2);
-	weight = to_string(weight2);
+	height = personHeight;
+	ReadPersonWeight(weight);
+	
+
 }
-void WritePersonData(unsigned short age, string& name, const string& height = "", const string& weight = "", const string& salary = "") {
+void WritePersonData(unsigned short age, string &name, const string &height = "", const string &weight = "", const string & salary = "") {
 	cout << name << endl << to_string(age) << endl << height << endl << weight << endl << salary << endl;
 }
 
 int main() {
-	string name, height, weight, salary;
-	unsigned short age;
+	string name;
+	unsigned short age, height, weight;
+	double salary;
 	cout << "Vvod:\n";
 	ReadPersonData(name, age, salary);
 	cout <<"\n" << "Vivod:\n";
-	WritePersonData(age, name, "", "", salary);
+	WritePersonData(age, name, "", "", to_string(salary));
 	cout << "\n" << "Vvod:\n";
 	ReadPersonData(name, age, height, weight);
 	cout << "\n" << "Vivod:\n";
-	WritePersonData(age, name, height, weight);
+	WritePersonData(age, name, to_string(height), to_string(weight));
 	return 0;
 }
